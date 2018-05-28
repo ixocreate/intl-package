@@ -1,0 +1,31 @@
+{
+    "name": "kiwi-suite/intl",
+    "description": "kiwi-suite/intl",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Thomas Payer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "kiwi-suite/contract": "dev-develop"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0.6",
+        "friendsofphp/php-cs-fixer": "^2.5",
+        "php-coveralls/php-coveralls": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "KiwiSuite\\Intl\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KiwiSuiteMisc\\Intl\\": "tests/misc/",
+            "KiwiSuiteTest\\Intl\\": "tests/src/"
+        }
+    }
+}
