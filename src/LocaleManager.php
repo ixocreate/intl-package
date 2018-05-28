@@ -30,12 +30,14 @@ final class LocaleManager implements SerializableServiceInterface
         $this->locales = $localeConfigurator->getLocales();
 
         $this->default = $localeConfigurator->getDefault();
-        if (empty($this->default) && empty($this->locales)) {
-            //TODO Exception
-            throw new \Exception("invalid default locale");
+        if (empty($this->default) && !empty($this->locales)) {
+            $this->default = \array_keys($this->locales)[0];
         }
 
-        $this->default = \array_keys($this->locales)[0];
+        if (empty($this->default)) {
+            $this->default = "";
+        }
+
     }
 
 

@@ -66,6 +66,7 @@ final class LocaleConfigurator implements ConfiguratorInterface
     /**
      * @param ServiceRegistryInterface $serviceRegistry
      * @return void
+     * @throws \Exception
      */
     public function registerService(ServiceRegistryInterface $serviceRegistry): void
     {
