@@ -29,12 +29,14 @@ final class LocaleConfigurator implements ConfiguratorInterface
     /**
      * @param string $locale
      * @param bool $active
+     * @param null $name
      */
-    public function add(string $locale, $active = true): void
+    public function add(string $locale, $active = true, $name = null): void
     {
         $this->locales[$locale] = [
             'locale' => $locale,
             'active' => $active,
+            'name' => (empty($name)) ? \Locale::getDisplayLanguage($locale) : $name,
         ];
     }
 
