@@ -25,6 +25,10 @@ final class LocaleManager implements SerializableServiceInterface
      */
     private $default;
 
+    /**
+     * LocaleManager constructor.
+     * @param LocaleConfigurator $localeConfigurator
+     */
     public function __construct(LocaleConfigurator $localeConfigurator)
     {
         $this->locales = $localeConfigurator->getLocales();
@@ -40,12 +44,17 @@ final class LocaleManager implements SerializableServiceInterface
 
     }
 
-
+    /**
+     * @return array
+     */
     public function all(): array
     {
         return \array_values($this->locales);
     }
 
+    /**
+     * @return array
+     */
     public function allActive(): array
     {
         return \array_filter($this->all(), function ($options) {
@@ -53,6 +62,18 @@ final class LocaleManager implements SerializableServiceInterface
         });
     }
 
+    /**
+     * @param string $locale
+     * @return bool
+     */
+    public function has(string $locale): bool
+    {
+        return array_key_exists($locale, $this->locales);
+    }
+
+    /**
+     * @return string
+     */
     public function defaultLocale(): string
     {
         return $this->default;
