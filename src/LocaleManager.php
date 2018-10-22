@@ -113,7 +113,9 @@ final class LocaleManager implements SerializableServiceInterface
 
         if (!empty($header)) {
             $locale = \Locale::acceptFromHttp($header);
-            //TODO check locale
+            if (!$this->has($locale)) {
+                $locale = null;
+            }
         }
 
         if (empty($locale)) {
