@@ -1,14 +1,12 @@
 <?php
 /**
- * kiwi-suite/intl (https://github.com/kiwi-suite/intl)
- *
- * @package kiwi-suite/intl
- * @see https://github.com/kiwi-suite/intl
- * @copyright Copyright (c) 2010 - 2018 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
+
 namespace Ixocreate\Intl;
 
 use Ixocreate\Contract\Application\SerializableServiceInterface;
@@ -41,7 +39,6 @@ final class LocaleManager implements SerializableServiceInterface
         if (empty($this->default)) {
             $this->default = "";
         }
-
     }
 
     /**
@@ -68,7 +65,7 @@ final class LocaleManager implements SerializableServiceInterface
      */
     public function has(string $locale): bool
     {
-        return array_key_exists($locale, $this->locales);
+        return \array_key_exists($locale, $this->locales);
     }
 
     /**

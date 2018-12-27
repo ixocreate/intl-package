@@ -1,10 +1,7 @@
 <?php
 /**
- * kiwi-suite/intl (https://github.com/kiwi-suite/intl)
- *
- * @package kiwi-suite/intl
- * @see https://github.com/kiwi-suite/intl
- * @copyright Copyright (c) 2010 - 2018 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
@@ -18,7 +15,6 @@ use Ixocreate\Intl\LocaleConfigurator;
 
 final class LocaleBootstrapItem implements BootstrapItemInterface
 {
-
     /**
      * @return mixed
      */

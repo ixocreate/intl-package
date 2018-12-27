@@ -1,14 +1,12 @@
 <?php
 /**
- * kiwi-suite/intl (https://github.com/kiwi-suite/intl)
- *
- * @package kiwi-suite/intl
- * @see https://github.com/kiwi-suite/intl
- * @copyright Copyright (c) 2010 - 2018 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
+
 namespace Ixocreate\Intl;
 
 use Ixocreate\Contract\Application\ConfiguratorInterface;
@@ -67,8 +65,8 @@ final class LocaleConfigurator implements ConfiguratorInterface
 
     /**
      * @param ServiceRegistryInterface $serviceRegistry
-     * @return void
      * @throws \Exception
+     * @return void
      */
     public function registerService(ServiceRegistryInterface $serviceRegistry): void
     {

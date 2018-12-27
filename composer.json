@@ -12,8 +12,8 @@
         "kiwi-suite/contract": "dev-develop"
     },
     "require-dev": {
+        "ixocreate/coding-standard": "^1.0.1",
         "phpunit/phpunit": "^6.0.6",
-        "friendsofphp/php-cs-fixer": "^2.5",
         "php-coveralls/php-coveralls": "^2.0"
     },
     "autoload": {
@@ -26,5 +26,8 @@
             "IxocreateMisc\\Intl\\": "tests/misc/",
             "IxocreateTest\\Intl\\": "tests/src/"
         }
+    },
+    "scripts": {
+        "fix-cs": "vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --config vendor/ixocreate/coding-standard/.php_cs"
     }
 }
