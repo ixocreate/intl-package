@@ -9,7 +9,7 @@
     "require": {
         "php": "^7.1",
         "ext-intl": "*",
-        "kiwi-suite/contract": "dev-develop"
+        "ixocreate/contract": "dev-develop"
     },
     "require-dev": {
         "ixocreate/coding-standard": "^1.0.1",
