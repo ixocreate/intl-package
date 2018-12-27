@@ -1,13 +1,11 @@
 {
-    "name": "kiwi-suite/intl",
-    "description": "kiwi-suite/intl",
+    "name": "ixocreate/intl",
+    "description": "Internationalization integration for IXOCREATE",
     "license": "MIT",
     "type": "library",
-    "authors": [
-        {
-            "name": "Thomas Payer"
-        }
-    ],
+    "authors": [{
+        "name": "IXOCREATE"
+    }],
     "require": {
         "php": "^7.1",
         "ext-intl": "*",
