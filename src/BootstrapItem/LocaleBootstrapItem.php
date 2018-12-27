@@ -10,11 +10,11 @@
 
 declare(strict_types=1);
 
-namespace KiwiSuite\Intl\BootstrapItem;
+namespace Ixocreate\Intl\BootstrapItem;
 
-use KiwiSuite\Contract\Application\BootstrapItemInterface;
-use KiwiSuite\Contract\Application\ConfiguratorInterface;
-use KiwiSuite\Intl\LocaleConfigurator;
+use Ixocreate\Contract\Application\BootstrapItemInterface;
+use Ixocreate\Contract\Application\ConfiguratorInterface;
+use Ixocreate\Intl\LocaleConfigurator;
 
 final class LocaleBootstrapItem implements BootstrapItemInterface
 {
