@@ -4,7 +4,7 @@
 
 ixocreate/intl
 
-[![Build Status](https://travis-ci.org/ixocreate/intl.svg?branch=master)](https://travis-ci.org/ixocreate/intl)
+[![Build Status](https://travis-ci.com/ixocreate/intl.svg?branch=master)](https://travis-ci.com/ixocreate/intl)
 [![Coverage Status](https://coveralls.io/repos/github/ixocreate/intl/badge.svg?branch=develop)](https://coveralls.io/github/ixocreate/intl?branch=develop)
 [![Packagist](https://img.shields.io/packagist/v/ixocreate/intl.svg)](https://packagist.org/packages/ixocreate/intl)
 [![Packagist Pre Release](https://img.shields.io/packagist/vpre/ixocreate/intl.svg)](https://packagist.org/packages/ixocreate/intl)
