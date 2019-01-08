@@ -1,5 +1,3 @@
-**This is a draft. Don't use in production**
-
 # ixocreate/intl
 
 [![Build Status](https://travis-ci.com/ixocreate/intl.svg?branch=master)](https://travis-ci.com/ixocreate/intl)
