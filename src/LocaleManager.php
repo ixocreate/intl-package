@@ -37,8 +37,13 @@ final class LocaleManager implements SerializableServiceInterface
         }
 
         if (empty($this->default)) {
-            $this->default = "";
+            $this->default = \Locale::getDefault();
+            if (!$this->has($this->default)) {
+                throw new \RuntimeException('default locale not in locale list');
+            }
         }
+
+        $this->acceptLocale($this->default);
     }
 
     /**
