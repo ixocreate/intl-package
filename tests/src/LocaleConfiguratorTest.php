@@ -23,7 +23,9 @@ class LocaleConfiguratorTest extends TestCase
     {
         $collector = [];
         $serviceRegistry = $this->createMock(ServiceRegistryInterface::class);
-        $serviceRegistry->method('add')->willReturnCallback(function ($name, $object) use (&$collector){ $collector[$name] = $object;});
+        $serviceRegistry->method('add')->willReturnCallback(function ($name, $object) use (&$collector) {
+            $collector[$name] = $object;
+        });
 
 
         $configurator = new LocaleConfigurator();
@@ -31,7 +33,7 @@ class LocaleConfiguratorTest extends TestCase
         $configurator->setDefaultLocale('Test');
         $this->assertSame('Test', $configurator->getDefault());
 
-        $configurator->add('test',false);
+        $configurator->add('test', false);
         $configurator->add('test', true, 'anders');
 
         $configurator->registerService($serviceRegistry);

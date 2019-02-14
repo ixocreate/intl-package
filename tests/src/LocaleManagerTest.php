@@ -13,11 +13,10 @@ use Ixocreate\Intl\LocaleConfigurator;
 use Ixocreate\Intl\LocaleManager;
 use PHPUnit\Framework\TestCase;
 
-
 class LocaleManagerTest extends TestCase
 {
     /**
-     * @covers \Ixocreate\Intl\LocaleManager
+     * @covers \Ixocreate\Intl\LocaleManager::__construct
      */
     public function testLocaleManager()
     {
@@ -38,7 +37,6 @@ class LocaleManagerTest extends TestCase
 
         $localeConfig = new LocaleConfigurator();
         $this->localManager = new LocaleManager($localeConfig);
-
     }
 
     /**
@@ -75,7 +73,7 @@ class LocaleManagerTest extends TestCase
         $localeConfig->setDefaultLocale('Hallo');
         $localeManager = new LocaleManager($localeConfig);
 
-        $this->assertSame(serialize([
+        $this->assertSame(\serialize([
             'locales' => [ 'Test' => [ 'locale' => 'Test', 'active' => true, 'name' => 'test']],
             'default' => 'Hallo',
         ]), $localeManager->serialize());
@@ -91,11 +89,11 @@ class LocaleManagerTest extends TestCase
         $localeConfig->setDefaultLocale('Hallo');
         $localeManager = new LocaleManager($localeConfig);
 
-        $s = serialize($localeManager);
+        $s = \serialize($localeManager);
 
-        $temp = unserialize($s);
+        $temp = \unserialize($s);
 
-        $this->assertSame( $localeManager->all() ,$temp->all());
+        $this->assertSame($localeManager->all(), $temp->all());
     }
 
     /**
