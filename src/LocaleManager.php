@@ -30,17 +30,13 @@ final class LocaleManager implements SerializableServiceInterface
     public function __construct(LocaleConfigurator $localeConfigurator)
     {
         $this->locales = $localeConfigurator->getLocales();
-
-        $this->default = $localeConfigurator->getDefault();
-        if (empty($this->default) && !empty($this->locales)) {
-            $this->default = \array_keys($this->locales)[0];
+        if (empty($this->locales)) {
+            throw new \RuntimeException('locales is empty');
         }
 
+        $this->default = $localeConfigurator->getDefault();
         if (empty($this->default)) {
-            $this->default = \Locale::getDefault();
-            if (!$this->has($this->default)) {
-                throw new \RuntimeException('default locale not in locale list');
-            }
+            throw new \RuntimeException('default is empty');
         }
 
         $this->acceptLocale($this->default);
@@ -86,7 +82,10 @@ final class LocaleManager implements SerializableServiceInterface
      */
     public function acceptLocale(string $locale): void
     {
-        //TODO check locale
+        if (\Locale::canonicalize($locale) !== $locale) {
+            throw new \InvalidArgumentException("Local $locale is not a valid local, use: ". \Locale::canonicalize($locale));
+        }
+
         \Locale::setDefault($locale);
         \setlocale(LC_ALL, $locale, $locale . ".utf8", $locale . ".UTF-8");
     }

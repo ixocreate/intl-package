@@ -9,9 +9,11 @@ declare(strict_types=1);
 
 namespace IxocreateTest\Intl;
 
+use InvalidArgumentException;
 use Ixocreate\Intl\LocaleConfigurator;
 use Ixocreate\Intl\LocaleManager;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 class LocaleManagerTest extends TestCase
 {
@@ -21,7 +23,8 @@ class LocaleManagerTest extends TestCase
     public function testLocaleManager()
     {
         $localeConfig = new LocaleConfigurator();
-        $localeConfig->setDefaultLocale('Hallo');
+        $localeConfig->add('de_DE');
+        $localeConfig->setDefaultLocale('de_DE');
         $localManager = new LocaleManager($localeConfig);
 
         $this->assertIsArray($localManager->all());
@@ -29,26 +32,25 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager
+     * @covers \Ixocreate\Intl\LocaleManager::__construct
      */
-    public function testLocaleManagerNoDefault()
+    public function testLocalManagerEmptyLocales()
     {
-        $this->expectException(\RuntimeException::class);
-
+        $this->expectException(RuntimeException::class);
         $localeConfig = new LocaleConfigurator();
-        $this->localManager = new LocaleManager($localeConfig);
+        $localManager = new LocaleManager($localeConfig);
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager
+     * @covers \Ixocreate\Intl\LocaleManager::__construct
      */
     public function testLocalManagerEmptyDefault()
     {
-        $localeConfig = new LocaleConfigurator();
-        $localeConfig->add('Test');
-        $localManager = new LocaleManager($localeConfig);
+        $this->expectException(RuntimeException::class);
 
-        $this->assertIsString($localManager->defaultLocale());
+        $localeConfig = new LocaleConfigurator();
+        $localeConfig->add('de_DE');
+        $localManager = new LocaleManager($localeConfig);
     }
 
     /**
@@ -57,7 +59,8 @@ class LocaleManagerTest extends TestCase
     public function testAllActive()
     {
         $localeConfig = new LocaleConfigurator();
-        $localeConfig->add('Test');
+        $localeConfig->add('de_DE');
+        $localeConfig->setDefaultLocale('de_DE');
         $localManager = new LocaleManager($localeConfig);
 
         $this->assertIsArray($localManager->allActive());
@@ -69,13 +72,13 @@ class LocaleManagerTest extends TestCase
     public function testSerialize()
     {
         $localeConfig = new LocaleConfigurator();
-        $localeConfig->add('Test');
-        $localeConfig->setDefaultLocale('Hallo');
+        $localeConfig->add('de_DE');
+        $localeConfig->setDefaultLocale('de_DE');
         $localeManager = new LocaleManager($localeConfig);
 
         $this->assertSame(\serialize([
-            'locales' => [ 'Test' => [ 'locale' => 'Test', 'active' => true, 'name' => 'test']],
-            'default' => 'Hallo',
+            'locales' => [ 'de_DE' => [ 'locale' => 'de_DE', 'active' => true, 'name' => 'Deutsch']],
+            'default' => 'de_DE',
         ]), $localeManager->serialize());
     }
 
@@ -85,8 +88,8 @@ class LocaleManagerTest extends TestCase
     public function testUnserialize()
     {
         $localeConfig = new LocaleConfigurator();
-        $localeConfig->add('Test');
-        $localeConfig->setDefaultLocale('Hallo');
+        $localeConfig->add('de_DE');
+        $localeConfig->setDefaultLocale('de_DE');
         $localeManager = new LocaleManager($localeConfig);
 
         $s = \serialize($localeManager);
@@ -103,6 +106,7 @@ class LocaleManagerTest extends TestCase
     {
         $localeConfig = new LocaleConfigurator();
         $localeConfig->add('de_DE');
+        $localeConfig->setDefaultLocale('de_DE');
         $localeManager = new LocaleManager($localeConfig);
 
 
@@ -117,6 +121,7 @@ class LocaleManagerTest extends TestCase
     {
         $localeConfig = new LocaleConfigurator();
         $localeConfig->add('de_AT');
+        $localeConfig->setDefaultLocale('de_AT');
         $localeManager = new LocaleManager($localeConfig);
 
         $localeManager->suggestLocale('de-DE,fr');
@@ -130,12 +135,13 @@ class LocaleManagerTest extends TestCase
     public function testSuggestLocaleLocaleempty()
     {
         $localeConfig = new LocaleConfigurator();
+        $localeConfig->add('de_DE');
         $localeConfig->setDefaultLocale('de_DE');
         $localeManager = new LocaleManager($localeConfig);
 
-        $localeManager->suggestLocale('de-DE,fr');
+        $locale = $localeManager->suggestLocale('en_US,fr');
 
-        $this->assertSame($localeManager->defaultLocale(), $localeManager->suggestLocale('de-DE,fr'));
+        $this->assertSame($localeManager->defaultLocale(), $locale);
     }
 
     /**
@@ -144,6 +150,7 @@ class LocaleManagerTest extends TestCase
     public function testCallWithDifferentLocale()
     {
         $localeConfig = new LocaleConfigurator();
+        $localeConfig->add('de_DE');
         $localeConfig->setDefaultLocale('de_DE');
         $localeManager = new LocaleManager($localeConfig);
 
@@ -164,10 +171,68 @@ class LocaleManagerTest extends TestCase
     public function testAcceptLocale()
     {
         $localeConfig = new LocaleConfigurator();
+        $localeConfig->add('de_DE');
         $localeConfig->setDefaultLocale('de_DE');
         $localeManager = new LocaleManager($localeConfig);
 
         $localeManager->acceptLocale('en_US');
         $this->assertSame('en_US', \Locale::getDefault());
+    }
+
+    /**
+     * @covers \Ixocreate\Intl\LocaleManager::acceptLocale
+     */
+    public function testAcceptLocaleNotValid()
+    {
+        $localeConfig = new LocaleConfigurator();
+        $localeConfig->add('de_DE');
+        $localeConfig->setDefaultLocale('de_DE');
+        $localeManager = new LocaleManager($localeConfig);
+
+        $this->expectException(InvalidArgumentException::class);
+        $localeManager->acceptLocale('en_US...');
+        $this->assertSame('en_US', \Locale::getDefault());
+    }
+
+    /**
+     * @covers \Ixocreate\Intl\LocaleManager::all
+     */
+    public function testLocaleManagerAll()
+    {
+        $localeConfig = new LocaleConfigurator();
+        $localeConfig->add('de_DE');
+        $localeConfig->setDefaultLocale('de_DE');
+        $localManager = new LocaleManager($localeConfig);
+
+        $this->assertIsArray($localManager->all());
+        $this->assertIsArray($localManager->allActive());
+    }
+
+    /**
+     * @covers \Ixocreate\Intl\LocaleManager::has
+     */
+    public function testLocaleManagerHas()
+    {
+        $localeConfig = new LocaleConfigurator();
+        $localeConfig->add('de_DE');
+        $localeConfig->setDefaultLocale('de_DE');
+        $localManager = new LocaleManager($localeConfig);
+
+
+        $this->assertIsBool($localManager->has('de_DE'));
+    }
+
+    /**
+     * @covers \Ixocreate\Intl\LocaleManager::defaultLocale
+     */
+    public function testLocaleManagerDefault()
+    {
+        $localeConfig = new LocaleConfigurator();
+        $localeConfig->add('de_DE');
+        $localeConfig->setDefaultLocale('de_DE');
+        $localManager = new LocaleManager($localeConfig);
+
+
+        $this->assertSame('de_DE',$localManager->defaultLocale());
     }
 }

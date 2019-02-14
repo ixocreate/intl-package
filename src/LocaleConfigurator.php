@@ -31,6 +31,9 @@ final class LocaleConfigurator implements ConfiguratorInterface
      */
     public function add(string $locale, $active = true, $name = null): void
     {
+        if (\Locale::canonicalize($locale) !== $locale) {
+            throw new \InvalidArgumentException("Local $locale is not a valid local, use: ". \Locale::canonicalize($locale));
+        }
         $this->locales[$locale] = [
             'locale' => $locale,
             'active' => $active,
@@ -51,7 +54,10 @@ final class LocaleConfigurator implements ConfiguratorInterface
      */
     public function setDefaultLocale(string $locale): void
     {
-        //TODO check if $locale is set
+        if (!\array_key_exists($locale, $this->getLocales())) {
+            throw new \InvalidArgumentException("locale $locale is not set");
+        }
+
         $this->default = $locale;
     }
 
