@@ -32,7 +32,7 @@ final class LocaleConfigurator implements ConfiguratorInterface
     public function add(string $locale, $active = true, $name = null): void
     {
         if (\Locale::canonicalize($locale) !== $locale) {
-            throw new \InvalidArgumentException("Local $locale is not a valid local, use: ". \Locale::canonicalize($locale));
+            throw new \InvalidArgumentException("Local $locale is not a valid local, use: " . \Locale::canonicalize($locale));
         }
         $this->locales[$locale] = [
             'locale' => $locale,

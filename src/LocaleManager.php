@@ -83,7 +83,7 @@ final class LocaleManager implements SerializableServiceInterface
     public function acceptLocale(string $locale): void
     {
         if (\Locale::canonicalize($locale) !== $locale) {
-            throw new \InvalidArgumentException("Local $locale is not a valid local, use: ". \Locale::canonicalize($locale));
+            throw new \InvalidArgumentException("Local $locale is not a valid local, use: " . \Locale::canonicalize($locale));
         }
 
         \Locale::setDefault($locale);

@@ -80,5 +80,4 @@ class LocaleConfiguratorTest extends TestCase
         $configurator->registerService($serviceRegistry);
         $this->assertArrayHasKey(LocaleManager::class, $collector);
     }
-
 }

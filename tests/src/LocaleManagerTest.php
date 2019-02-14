@@ -233,6 +233,6 @@ class LocaleManagerTest extends TestCase
         $localManager = new LocaleManager($localeConfig);
 
 
-        $this->assertSame('de_DE',$localManager->defaultLocale());
+        $this->assertSame('de_DE', $localManager->defaultLocale());
     }
 }
