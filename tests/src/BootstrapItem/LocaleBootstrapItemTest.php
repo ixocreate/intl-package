@@ -23,7 +23,7 @@ class LocaleBootstrapItemTest extends TestCase
     /**
      * @covers \Ixocreate\Intl\BootstrapItem\LocaleBootstrapItem
      */
-    public function testPackage()
+    public function testLocaleBootstrapItem()
     {
         $this->assertSame($this->local->getVariableName(), 'locale');
         $this->assertSame($this->local->getFileName(), 'locale.php');

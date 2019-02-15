@@ -111,33 +111,33 @@ final class LocaleManager implements SerializableServiceInterface
     public function suggestLocale(string $header = null): string
     {
         $locale = null;
-        if (!empty($header)) {
-            $requestedLocaleArray = $this->getAcceptLanguageList($header);
-            foreach ($requestedLocaleArray as $value) {
-                $region = \Locale::getRegion($value);
-                if (!empty($region)) {
-                    if ($this->has($value)) {
-                        $locale = $value;
-                        break;
-                    }
-                } else {
-                    $language = \Locale::getPrimaryLanguage($value);
-                    foreach ($this->locales as $tmpLocale) {
-                        if ($language == \Locale::getPrimaryLanguage($tmpLocale['locale'])) {
-                            $locale = $tmpLocale['locale'];
-                            break 2;
-                        }
+        $requestedLocaleArray = $this->getAcceptLanguageList($header);
+        $secondTryLocales = [];
+        foreach ($requestedLocaleArray as $value) {
+            $region = \Locale::getRegion($value);
+            if (!empty($region)) {
+                $secondTryLocales[] = $value;
+                if ($this->has($value)) {
+                    $locale = $value;
+                    break;
+                }
+            } else {
+                $language = \Locale::getPrimaryLanguage($value);
+                foreach ($this->locales as $tmpLocale) {
+                    if ($language == \Locale::getPrimaryLanguage($tmpLocale['locale'])) {
+                        $locale = $tmpLocale['locale'];
+                        break 2;
                     }
                 }
             }
-            if (empty($locale)) {
-                foreach ($requestedLocaleArray as $value) {
-                    $language = \Locale::getPrimaryLanguage($value);
-                    foreach ($this->locales as $tmpLocale) {
-                        if ($language == \Locale::getPrimaryLanguage($tmpLocale['locale'])) {
-                            $locale = $tmpLocale['locale'];
-                            break 2;
-                        }
+        }
+        if (empty($locale)) {
+            foreach ($secondTryLocales as $value) {
+                $language = \Locale::getPrimaryLanguage($value);
+                foreach ($this->locales as $tmpLocale) {
+                    if ($language == \Locale::getPrimaryLanguage($tmpLocale['locale'])) {
+                        $locale = $tmpLocale['locale'];
+                        break 2;
                     }
                 }
             }
@@ -171,7 +171,7 @@ final class LocaleManager implements SerializableServiceInterface
 
     private function getAcceptLanguageList($header)
     {
-        if (isset($header)) {
+        if (!empty($header)) {
             \preg_match_all('/([a-z]{1,8}(?!=)(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i', $header, $lang_parse);
 
             if (\count($lang_parse[1])) {
@@ -181,8 +181,6 @@ final class LocaleManager implements SerializableServiceInterface
                     $langs[$lang] = ($lang_parse[4][$i] === '') ? 1 : (float) $lang_parse[4][$i];
                 }
                 \arsort($langs, SORT_NUMERIC);
-
-                \var_dump(\array_keys($langs));
                 return \array_keys($langs);
             }
         }

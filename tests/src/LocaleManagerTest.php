@@ -101,25 +101,24 @@ class LocaleManagerTest extends TestCase
 
     /**
      * @covers \Ixocreate\Intl\LocaleManager::suggestLocale
+     * @covers \Ixocreate\Intl\LocaleManager::getAcceptLanguageList
      */
     public function testSuggestLocaleLocaleHas()
     {
         $localeConfig = new LocaleConfigurator();
         $localeConfig->add('de_DE');
+        $localeConfig->add('de_CH');
         $localeConfig->add('en_US');
         $localeConfig->add('fr_CH');
         $localeConfig->setDefaultLocale('de_DE');
         $localeManager = new LocaleManager($localeConfig);
 
         $this->assertSame('en_US', $localeManager->suggestLocale('fr-FR, fr;q=0.8, en;q=0.9, de;q=0.7, *;q=0.5'));
-
         $this->assertSame('fr_CH', $localeManager->suggestLocale('fr-FR, fr-BE, en-GB, *;q=0.5'));
-
+        $this->assertSame('de_CH', $localeManager->suggestLocale('de-CH, de-DE, fr-BE, en-GB, *;q=0.5'));
         $this->assertSame('fr_CH', $localeManager->suggestLocale('fr-FR, fr;q=0.8, en-GB;q=0.9, de;q=0.7, *;q=0.5'));
         $this->assertSame('de_DE', $localeManager->suggestLocale('fr-FR, fr-BE;q=0.8, en-GB;q=0.9, de;q=0.7, *;q=0.5'));
         $this->assertSame('fr_CH', $localeManager->suggestLocale('fr-FR, fr-BE;q=0.8, en-GB;q=0.9, de-AT;q=0.7, *;q=0.5'));
-
-
         $this->assertSame('fr_CH', $localeManager->suggestLocale('fr-FR, fr, en;q=0.9, de;q=0.7, *;q=0.5'));
         $this->assertSame('de_DE', $localeManager->suggestLocale('de-DE,fr'));
         $this->assertSame('de_DE', $localeManager->suggestLocale('de,fr'));
@@ -128,12 +127,8 @@ class LocaleManagerTest extends TestCase
         $this->assertSame('de_DE', $localeManager->suggestLocale('es-ES,de-DE;q=0.5'));
         $this->assertSame('de_DE', $localeManager->suggestLocale('en-US;q=0.7,de-DE'));
         $this->assertSame('de_DE', $localeManager->suggestLocale('es-ES, nl-BE'));
-
         $this->assertSame('fr_CH', $localeManager->suggestLocale('us-UK,fr'));
-
-
-        // test invalid locale
-
+        $this->assertSame('de_DE', $localeManager->suggestLocale(''));
         $this->assertSame($localeManager->defaultLocale(), $localeManager->suggestLocale('de-DE,fr'));
     }
 
@@ -240,8 +235,6 @@ class LocaleManagerTest extends TestCase
         $localeConfig->add('de_DE');
         $localeConfig->setDefaultLocale('de_DE');
         $localManager = new LocaleManager($localeConfig);
-
-
         $this->assertIsBool($localManager->has('de_DE'));
     }
 
@@ -254,8 +247,6 @@ class LocaleManagerTest extends TestCase
         $localeConfig->add('de_DE');
         $localeConfig->setDefaultLocale('de_DE');
         $localManager = new LocaleManager($localeConfig);
-
-
         $this->assertSame('de_DE', $localManager->defaultLocale());
     }
 }
