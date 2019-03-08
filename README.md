@@ -1,4 +1,4 @@
-# ixocreate/intl
+# IXOCREATE intl
 
 [![Build Status](https://travis-ci.com/ixocreate/intl.svg?branch=master)](https://travis-ci.com/ixocreate/intl)
 [![Coverage Status](https://coveralls.io/repos/github/ixocreate/intl/badge.svg?branch=develop)](https://coveralls.io/github/ixocreate/intl?branch=develop)
