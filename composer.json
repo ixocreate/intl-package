@@ -1,5 +1,5 @@
 {
-    "name": "ixocreate/intl",
+    "name": "ixocreate/intl-package",
     "description": "Internationalization integration for IXOCREATE",
     "license": "MIT",
     "type": "library",
