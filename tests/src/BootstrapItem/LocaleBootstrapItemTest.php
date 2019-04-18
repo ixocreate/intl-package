@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ixocreate\Test\Intl\BootstrapItem;
 
-use Ixocreate\Application\ConfiguratorInterface;
+use Ixocreate\Application\Service\Configurator\ConfiguratorInterface;
 use Ixocreate\Intl\Package\Bootstrap\LocaleBootstrapItem;
 use PHPUnit\Framework\TestCase;
 
