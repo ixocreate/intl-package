@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ixocreate\Intl;
 
-use Ixocreate\Application\ConfiguratorInterface;
+use Ixocreate\Application\Configurator\ConfiguratorInterface;
 use Ixocreate\Application\Service\ServiceRegistryInterface;
 
 final class LocaleConfigurator implements ConfiguratorInterface
