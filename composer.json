@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ixocreate\\Intl\\Package\\": "src/"
+            "Ixocreate\\Intl\\": "src/"
         }
     },
     "autoload-dev": {

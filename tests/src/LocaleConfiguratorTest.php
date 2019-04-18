@@ -11,14 +11,14 @@ namespace Ixocreate\Test\Intl;
 
 use InvalidArgumentException;
 use Ixocreate\Application\Service\Registry\ServiceRegistryInterface;
-use Ixocreate\Intl\Package\LocaleConfigurator;
-use Ixocreate\Intl\Package\LocaleManager;
+use Ixocreate\Intl\LocaleConfigurator;
+use Ixocreate\Intl\LocaleManager;
 use PHPUnit\Framework\TestCase;
 
 class LocaleConfiguratorTest extends TestCase
 {
     /**
-     * @covers \Ixocreate\Intl\Package\LocaleConfigurator::add
+     * @covers \Ixocreate\Intl\LocaleConfigurator::add
      */
     public function testLocalConfiguratorAdd()
     {
@@ -39,7 +39,7 @@ class LocaleConfiguratorTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\Package\LocaleConfigurator::setDefaultLocale
+     * @covers \Ixocreate\Intl\LocaleConfigurator::setDefaultLocale
      */
     public function testSetDefault()
     {
@@ -60,7 +60,7 @@ class LocaleConfiguratorTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\Package\LocaleConfigurator
+     * @covers \Ixocreate\Intl\LocaleConfigurator
      */
     public function testLocaleConfigurator()
     {

@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Ixocreate\Test\Intl\BootstrapItem;
 
 use Ixocreate\Application\Service\Configurator\ConfiguratorInterface;
-use Ixocreate\Intl\Package\Bootstrap\LocaleBootstrapItem;
+use Ixocreate\Intl\Bootstrap\LocaleBootstrapItem;
 use PHPUnit\Framework\TestCase;
 
 class LocaleBootstrapItemTest extends TestCase
@@ -21,7 +21,7 @@ class LocaleBootstrapItemTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\Package\Bootstrap\LocaleBootstrapItem
+     * @covers \Ixocreate\Intl\Bootstrap\LocaleBootstrapItem
      */
     public function testLocaleBootstrapItem()
     {
