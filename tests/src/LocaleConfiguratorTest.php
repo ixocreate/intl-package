@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Ixocreate\Test\Intl;
 
 use InvalidArgumentException;
-use Ixocreate\Application\Service\Registry\ServiceRegistryInterface;
+use Ixocreate\Application\Service\ServiceRegistryInterface;
 use Ixocreate\Intl\LocaleConfigurator;
 use Ixocreate\Intl\LocaleManager;
 use PHPUnit\Framework\TestCase;

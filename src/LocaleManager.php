@@ -25,6 +25,7 @@ final class LocaleManager implements SerializableServiceInterface
 
     /**
      * LocaleManager constructor.
+     *
      * @param LocaleConfigurator $localeConfigurator
      */
     public function __construct(LocaleConfigurator $localeConfigurator)
@@ -176,9 +177,9 @@ final class LocaleManager implements SerializableServiceInterface
 
             if (\count($lang_parse[1])) {
                 $langs = [];
-                for ($i=0; $i < \count($lang_parse[1]); $i++) {
+                for ($i = 0; $i < \count($lang_parse[1]); $i++) {
                     $lang = \Locale::canonicalize($lang_parse[1][$i]);
-                    $langs[$lang] = ($lang_parse[4][$i] === '') ? 1 : (float) $lang_parse[4][$i];
+                    $langs[$lang] = ($lang_parse[4][$i] === '') ? 1 : (float)$lang_parse[4][$i];
                 }
                 \arsort($langs, SORT_NUMERIC);
                 return \array_keys($langs);
