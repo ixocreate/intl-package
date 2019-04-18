@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Intl;
+namespace Ixocreate\Package\Intl;
 
-use Ixocreate\Contract\Application\SerializableServiceInterface;
+use Ixocreate\Application\SerializableServiceInterface;
 
 final class LocaleManager implements SerializableServiceInterface
 {

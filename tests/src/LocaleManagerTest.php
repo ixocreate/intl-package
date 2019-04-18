@@ -7,18 +7,18 @@
 
 declare(strict_types=1);
 
-namespace IxocreateTest\Intl;
+namespace Ixocreate\Test\Intl;
 
 use InvalidArgumentException;
-use Ixocreate\Intl\LocaleConfigurator;
-use Ixocreate\Intl\LocaleManager;
+use Ixocreate\Package\Intl\LocaleConfigurator;
+use Ixocreate\Package\Intl\LocaleManager;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 class LocaleManagerTest extends TestCase
 {
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::__construct
+     * @covers \Ixocreate\Package\Intl\LocaleManager::__construct
      */
     public function testLocaleManager()
     {
@@ -32,7 +32,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::__construct
+     * @covers \Ixocreate\Package\Intl\LocaleManager::__construct
      */
     public function testLocalManagerEmptyLocales()
     {
@@ -42,7 +42,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::__construct
+     * @covers \Ixocreate\Package\Intl\LocaleManager::__construct
      */
     public function testLocalManagerEmptyDefault()
     {
@@ -54,7 +54,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::allActive
+     * @covers \Ixocreate\Package\Intl\LocaleManager::allActive
      */
     public function testAllActive()
     {
@@ -67,7 +67,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::serialize
+     * @covers \Ixocreate\Package\Intl\LocaleManager::serialize
      */
     public function testSerialize()
     {
@@ -83,7 +83,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::unserialize
+     * @covers \Ixocreate\Package\Intl\LocaleManager::unserialize
      */
     public function testUnserialize()
     {
@@ -100,8 +100,8 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::suggestLocale
-     * @covers \Ixocreate\Intl\LocaleManager::getAcceptLanguageList
+     * @covers \Ixocreate\Package\Intl\LocaleManager::suggestLocale
+     * @covers \Ixocreate\Package\Intl\LocaleManager::getAcceptLanguageList
      */
     public function testSuggestLocaleLocaleHas()
     {
@@ -133,7 +133,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::suggestLocale
+     * @covers \Ixocreate\Package\Intl\LocaleManager::suggestLocale
      */
     public function testSuggestLocaleLocaleHasNot()
     {
@@ -148,7 +148,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::suggestLocale
+     * @covers \Ixocreate\Package\Intl\LocaleManager::suggestLocale
      */
     public function testSuggestLocaleLocaleempty()
     {
@@ -163,7 +163,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::callWithDifferentLocale
+     * @covers \Ixocreate\Package\Intl\LocaleManager::callWithDifferentLocale
      */
     public function testCallWithDifferentLocale()
     {
@@ -184,7 +184,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::acceptLocale
+     * @covers \Ixocreate\Package\Intl\LocaleManager::acceptLocale
      */
     public function testAcceptLocale()
     {
@@ -198,7 +198,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::acceptLocale
+     * @covers \Ixocreate\Package\Intl\LocaleManager::acceptLocale
      */
     public function testAcceptLocaleNotValid()
     {
@@ -213,7 +213,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::all
+     * @covers \Ixocreate\Package\Intl\LocaleManager::all
      */
     public function testLocaleManagerAll()
     {
@@ -227,7 +227,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::has
+     * @covers \Ixocreate\Package\Intl\LocaleManager::has
      */
     public function testLocaleManagerHas()
     {
@@ -239,7 +239,7 @@ class LocaleManagerTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\LocaleManager::defaultLocale
+     * @covers \Ixocreate\Package\Intl\LocaleManager::defaultLocale
      */
     public function testLocaleManagerDefault()
     {

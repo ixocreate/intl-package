@@ -1,6 +1,6 @@
 {
-    "name": "ixocreate/intl",
-    "description": "Internationalization integration for IXOCREATE",
+    "name": "ixocreate/intl-package",
+    "description": "IXOCREATE Intl Package",
     "license": "MIT",
     "type": "library",
     "minimum-stability": "dev",
@@ -13,22 +13,22 @@
     "require": {
         "php": "^7.1",
         "ext-intl": "*",
-        "ixocreate/contract": "dev-develop"
+        "ixocreate/application": "dev-consolidate"
     },
     "require-dev": {
-        "ixocreate/coding-standard": "^1.0.1",
+        "ixocreate/coding-standard": "^1.0",
         "php-coveralls/php-coveralls": "^2.1",
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {
         "psr-4": {
-            "Ixocreate\\Intl\\": "src/"
+            "Ixocreate\\Package\\Intl\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "IxocreateMisc\\Intl\\": "tests/misc/",
-            "IxocreateTest\\Intl\\": "tests/src/"
+            "Ixocreate\\Misc\\Intl\\": "tests/misc/",
+            "Ixocreate\\Test\\Intl\\": "tests/src/"
         }
     },
     "scripts": {

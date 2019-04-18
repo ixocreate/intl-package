@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace IxocreateTest\Intl;
+namespace Ixocreate\Test\Intl;
 
-use Ixocreate\Contract\Application\ConfiguratorRegistryInterface;
-use Ixocreate\Contract\Application\ServiceRegistryInterface;
-use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Intl\BootstrapItem\LocaleBootstrapItem;
-use Ixocreate\Intl\Package;
+use Ixocreate\Application\ConfiguratorRegistryInterface;
+use Ixocreate\Application\ServiceRegistryInterface;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Package\Intl\BootstrapItem\LocaleBootstrapItem;
+use Ixocreate\Package\Intl\Package;
 use PHPUnit\Framework\TestCase;
 
 class PackageTest extends TestCase
@@ -29,7 +29,7 @@ class PackageTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Intl\Package
+     * @covers \Ixocreate\Package\Intl\Package
      */
     public function testPackage()
     {
