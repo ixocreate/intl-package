@@ -12,8 +12,8 @@ namespace Ixocreate\Test\Intl;
 use Ixocreate\Application\ConfiguratorRegistryInterface;
 use Ixocreate\Application\ServiceRegistryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Package\Intl\BootstrapItem\LocaleBootstrapItem;
-use Ixocreate\Package\Intl\Package;
+use Ixocreate\Intl\Package\Bootstrap\LocaleBootstrapItem;
+use Ixocreate\Intl\Package\Package;
 use PHPUnit\Framework\TestCase;
 
 class PackageTest extends TestCase
@@ -29,7 +29,7 @@ class PackageTest extends TestCase
     }
 
     /**
-     * @covers \Ixocreate\Package\Intl\Package
+     * @covers \Ixocreate\Intl\Package\Package
      */
     public function testPackage()
     {

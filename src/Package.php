@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Intl;
+namespace Ixocreate\Intl\Package;
 
 use Ixocreate\Application\ConfiguratorRegistryInterface;
-use Ixocreate\Application\PackageInterface;
+use Ixocreate\Application\Package\PackageInterface;
 use Ixocreate\Application\ServiceRegistryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Package\Intl\BootstrapItem\LocaleBootstrapItem;
+use Ixocreate\Intl\Package\Bootstrap\LocaleBootstrapItem;
 
 final class Package implements PackageInterface
 {

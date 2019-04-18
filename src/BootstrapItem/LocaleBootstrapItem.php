@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Intl\BootstrapItem;
+namespace Ixocreate\Intl\Package\BootstrapItem;
 
-use Ixocreate\Application\BootstrapItemInterface;
+use Ixocreate\Application\Bootstrap\BootstrapItemInterface;
 use Ixocreate\Application\ConfiguratorInterface;
-use Ixocreate\Package\Intl\LocaleConfigurator;
+use Ixocreate\Intl\Package\LocaleConfigurator;
 
 final class LocaleBootstrapItem implements BootstrapItemInterface
 {
