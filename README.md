@@ -1,17 +1,17 @@
-# IXOCREATE intl
+# IXOCREATE Intl Package
 
-[![Build Status](https://travis-ci.com/ixocreate/intl.svg?branch=master)](https://travis-ci.com/ixocreate/intl)
-[![Coverage Status](https://coveralls.io/repos/github/ixocreate/intl/badge.svg?branch=develop)](https://coveralls.io/github/ixocreate/intl?branch=develop)
-[![Packagist](https://img.shields.io/packagist/v/ixocreate/intl.svg)](https://packagist.org/packages/ixocreate/intl)
-[![Packagist Pre Release](https://img.shields.io/packagist/vpre/ixocreate/intl.svg)](https://packagist.org/packages/ixocreate/intl)
-[![Packagist](https://img.shields.io/packagist/l/ixocreate/intl.svg)](https://packagist.org/packages/ixocreate/intl)
+[![Build Status](https://travis-ci.com/ixocreate/intl-package.svg?branch=master)](https://travis-ci.com/ixocreate/intl-package)
+[![Coverage Status](https://coveralls.io/repos/github/ixocreate/intl-package/badge.svg?branch=develop)](https://coveralls.io/github/ixocreate/intl-package?branch=develop)
+[![Packagist](https://img.shields.io/packagist/v/ixocreate/intl-package.svg)](https://packagist.org/packages/ixocreate/intl-package)
+[![PHP Version](https://img.shields.io/packagist/php-v/ixocreate/intl-package.svg)](https://packagist.org/packages/ixocreate/intl-package)
+[![License](https://img.shields.io/github/license/ixocreate/intl-package.svg)](LICENSE)
 
 ## Installation
 
 Install the package via composer:
 
 ```sh
-composer require ixocreate/intl
+composer require ixocreate/intl-package
 ```
 
 ## Testing
@@ -20,6 +20,18 @@ composer require ixocreate/intl
 composer install --dev
 phpunit
 ```
+
+## Documentation
+
+Learn more about IXOCREATE by reading its [Documentation](https://ixocreate.github.io/).
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Security Vulnerabilities
+
+If you discover security vulnerabilities, please address issues directly to opensource@ixocreate.com via e-mail.
 
 ## License
 
