@@ -13,7 +13,7 @@
     "require": {
         "php": "^7.1",
         "ext-intl": "*",
-        "ixocreate/application": "dev-consolidate"
+        "ixocreate/application": "dev-develop"
     },
     "require-dev": {
         "ixocreate/coding-standard": "^1.0",
