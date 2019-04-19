@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ixocreate\Intl;
 
-use Ixocreate\Contract\Application\SerializableServiceInterface;
+use Ixocreate\Application\Service\SerializableServiceInterface;
 
 final class LocaleManager implements SerializableServiceInterface
 {
@@ -25,22 +25,19 @@ final class LocaleManager implements SerializableServiceInterface
 
     /**
      * LocaleManager constructor.
+     *
      * @param LocaleConfigurator $localeConfigurator
      */
     public function __construct(LocaleConfigurator $localeConfigurator)
     {
         $this->locales = $localeConfigurator->getLocales();
-
-        $this->default = $localeConfigurator->getDefault();
-        if (empty($this->default) && !empty($this->locales)) {
-            $this->default = \array_keys($this->locales)[0];
+        if (empty($this->locales)) {
+            throw new \RuntimeException('locales is empty');
         }
 
+        $this->default = $localeConfigurator->getDefault();
         if (empty($this->default)) {
-            $this->default = \Locale::getDefault();
-            if (!$this->has($this->default)) {
-                throw new \RuntimeException('default locale not in locale list');
-            }
+            throw new \RuntimeException('default is empty');
         }
 
         $this->acceptLocale($this->default);
@@ -86,7 +83,10 @@ final class LocaleManager implements SerializableServiceInterface
      */
     public function acceptLocale(string $locale): void
     {
-        //TODO check locale
+        if (\Locale::canonicalize($locale) !== $locale) {
+            throw new \InvalidArgumentException("Local $locale is not a valid local, use: " . \Locale::canonicalize($locale));
+        }
+
         \Locale::setDefault($locale);
         \setlocale(LC_ALL, $locale, $locale . ".utf8", $locale . ".UTF-8");
     }
@@ -112,26 +112,40 @@ final class LocaleManager implements SerializableServiceInterface
     public function suggestLocale(string $header = null): string
     {
         $locale = null;
-
-        if (!empty($header)) {
-            $requestedLocale = \Locale::acceptFromHttp($header);
-            if ($this->has($requestedLocale)) {
-                $locale = $requestedLocale;
+        $requestedLocaleArray = $this->getAcceptLanguageList($header);
+        $secondTryLocales = [];
+        foreach ($requestedLocaleArray as $value) {
+            $region = \Locale::getRegion($value);
+            if (!empty($region)) {
+                $secondTryLocales[] = $value;
+                if ($this->has($value)) {
+                    $locale = $value;
+                    break;
+                }
             } else {
-                $language = \Locale::getPrimaryLanguage($requestedLocale);
+                $language = \Locale::getPrimaryLanguage($value);
                 foreach ($this->locales as $tmpLocale) {
                     if ($language == \Locale::getPrimaryLanguage($tmpLocale['locale'])) {
                         $locale = $tmpLocale['locale'];
-                        break;
+                        break 2;
                     }
                 }
             }
         }
-
+        if (empty($locale)) {
+            foreach ($secondTryLocales as $value) {
+                $language = \Locale::getPrimaryLanguage($value);
+                foreach ($this->locales as $tmpLocale) {
+                    if ($language == \Locale::getPrimaryLanguage($tmpLocale['locale'])) {
+                        $locale = $tmpLocale['locale'];
+                        break 2;
+                    }
+                }
+            }
+        }
         if (empty($locale)) {
             $locale = $this->defaultLocale();
         }
-
         return $locale;
     }
 
@@ -154,5 +168,23 @@ final class LocaleManager implements SerializableServiceInterface
         $unserialize = \unserialize($serialized);
         $this->locales = $unserialize['locales'];
         $this->default = $unserialize['default'];
+    }
+
+    private function getAcceptLanguageList($header)
+    {
+        if (!empty($header)) {
+            \preg_match_all('/([a-z]{1,8}(?!=)(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i', $header, $lang_parse);
+
+            if (\count($lang_parse[1])) {
+                $langs = [];
+                for ($i = 0; $i < \count($lang_parse[1]); $i++) {
+                    $lang = \Locale::canonicalize($lang_parse[1][$i]);
+                    $langs[$lang] = ($lang_parse[4][$i] === '') ? 1 : (float)$lang_parse[4][$i];
+                }
+                \arsort($langs, SORT_NUMERIC);
+                return \array_keys($langs);
+            }
+        }
+        return [];
     }
 }
