@@ -19,34 +19,23 @@ use PHPUnit\Framework\TestCase;
 class PackageTest extends TestCase
 {
     /**
-     * @var Package
-     */
-    private $package;
-
-    public function setUp()
-    {
-        $this->package = new Package();
-    }
-
-    /**
      * @covers \Ixocreate\Intl\Package
      */
     public function testPackage()
     {
-        $ConfiguratorRegistry = $this->getMockBuilder(ConfiguratorRegistryInterface::class)->getMock();
-        $ServiceRegistry = $this->getMockBuilder(ServiceRegistryInterface::class)->getMock();
-        $ServiceManager = $this->getMockBuilder(ServiceManagerInterface::class)->getMock();
+        $configuratorRegistry = $this->getMockBuilder(ConfiguratorRegistryInterface::class)->getMock();
+        $serviceRegistry = $this->getMockBuilder(ServiceRegistryInterface::class)->getMock();
+        $serviceManager = $this->getMockBuilder(ServiceManagerInterface::class)->getMock();
 
-        $test = new Package();
+        $package = new Package();
+        $package->configure($configuratorRegistry);
+        $package->addServices($serviceRegistry);
+        $package->boot($serviceManager);
 
-        $test->configure($ConfiguratorRegistry);
-        $test->addServices($ServiceRegistry);
-        $test->boot($ServiceManager);
-
-        $this->assertSame([LocaleBootstrapItem::class], $this->package->getBootstrapItems());
-        $this->assertNull($this->package->getConfigProvider());
-        $this->assertNull($this->package->getBootstrapDirectory());
-        $this->assertNull($this->package->getConfigDirectory());
-        $this->assertNull($this->package->getDependencies());
+        $this->assertSame([LocaleBootstrapItem::class], $package->getBootstrapItems());
+        $this->assertNull($package->getConfigProvider());
+        $this->assertNull($package->getBootstrapDirectory());
+        $this->assertNull($package->getConfigDirectory());
+        $this->assertNull($package->getDependencies());
     }
 }
