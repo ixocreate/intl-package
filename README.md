@@ -1,7 +1,7 @@
 # IXOCREATE Intl Package
 
 [![Build Status](https://travis-ci.com/ixocreate/intl-package.svg?branch=master)](https://travis-ci.com/ixocreate/intl-package)
-[![Coverage Status](https://coveralls.io/repos/github/ixocreate/intl-package/badge.svg?branch=develop)](https://coveralls.io/github/ixocreate/intl-package?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/ixocreate/intl-package/badge.svg?branch=master)](https://coveralls.io/github/ixocreate/intl-package?branch=master)
 [![Packagist](https://img.shields.io/packagist/v/ixocreate/intl-package.svg)](https://packagist.org/packages/ixocreate/intl-package)
 [![PHP Version](https://img.shields.io/packagist/php-v/ixocreate/intl-package.svg)](https://packagist.org/packages/ixocreate/intl-package)
 [![License](https://img.shields.io/github/license/ixocreate/intl-package.svg)](LICENSE)
