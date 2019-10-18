@@ -39,8 +39,6 @@ final class LocaleManager implements SerializableServiceInterface
         if (empty($this->default)) {
             throw new \RuntimeException('default is empty');
         }
-
-        $this->acceptLocale($this->default);
     }
 
     /**

@@ -72,7 +72,7 @@ class LocaleManagerTest extends TestCase
     public function testSerialize()
     {
         $localeConfig = new LocaleConfigurator();
-        $localeConfig->add('de_DE');
+        $localeConfig->add('de_DE', true, 'Deutsch');
         $localeConfig->setDefaultLocale('de_DE');
         $localeManager = new LocaleManager($localeConfig);
 
@@ -180,8 +180,10 @@ class LocaleManagerTest extends TestCase
             $checkLocale = \Locale::getDefault();
         };
 
+        \Locale::setDefault('de_DE');
         $this->assertSame('de_DE', \Locale::getDefault());
         $localeManager->callWithDifferentLocale('en_US', $test);
+
         $this->assertSame('de_DE', \Locale::getDefault());
         $this->assertSame('en_US', $checkLocale);
     }

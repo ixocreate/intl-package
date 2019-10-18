@@ -12,6 +12,8 @@ namespace Ixocreate\Test\Intl;
 use Ixocreate\Application\Configurator\ConfiguratorRegistryInterface;
 use Ixocreate\Application\Service\ServiceRegistryInterface;
 use Ixocreate\Intl\LocaleBootstrapItem;
+use Ixocreate\Intl\LocaleConfigurator;
+use Ixocreate\Intl\LocaleManager;
 use Ixocreate\Intl\Package;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
 use PHPUnit\Framework\TestCase;
@@ -25,17 +27,39 @@ class PackageTest extends TestCase
     {
         $configuratorRegistry = $this->getMockBuilder(ConfiguratorRegistryInterface::class)->getMock();
         $serviceRegistry = $this->getMockBuilder(ServiceRegistryInterface::class)->getMock();
-        $serviceManager = $this->getMockBuilder(ServiceManagerInterface::class)->getMock();
 
         $package = new Package();
         $package->configure($configuratorRegistry);
         $package->addServices($serviceRegistry);
-        $package->boot($serviceManager);
 
         $this->assertSame([LocaleBootstrapItem::class], $package->getBootstrapItems());
         $this->assertNull($package->getConfigProvider());
         $this->assertNull($package->getBootstrapDirectory());
         $this->assertNull($package->getConfigDirectory());
         $this->assertNull($package->getDependencies());
+    }
+
+    /**
+     * @covers \Ixocreate\Intl\Package
+     */
+    public function testBoot()
+    {
+        $localeConfigurator = new LocaleConfigurator();
+        $localeConfigurator->add('fi_FI', 'Finnish');
+        $localeConfigurator->setDefaultLocale('fi_FI');
+
+        $localeManager = new LocaleManager($localeConfigurator);
+
+        $serviceManager = $this->getMockBuilder(ServiceManagerInterface::class)->getMock();
+        $serviceManager
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo(LocaleManager::class))
+            ->willReturn($localeManager);
+
+        $package = new Package();
+        $package->boot($serviceManager);
+
+        $this->assertEquals(\Locale::getDefault(), $localeConfigurator->getDefault());
     }
 }

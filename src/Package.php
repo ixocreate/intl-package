@@ -53,6 +53,9 @@ final class Package implements PackageInterface
      */
     public function boot(ServiceManagerInterface $serviceManager): void
     {
+        /** @var LocaleManager $localeManager */
+        $localeManager = $serviceManager->get(LocaleManager::class);
+        $localeManager->acceptLocale($localeManager->defaultLocale());
     }
 
     /**
