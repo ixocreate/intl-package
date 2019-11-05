@@ -86,7 +86,7 @@ final class LocaleManager implements SerializableServiceInterface
         }
 
         \Locale::setDefault($locale);
-        \setlocale(LC_ALL, $locale, $locale . ".utf8", $locale . ".UTF-8");
+        \setlocale(LC_ALL, $locale . '.utf8', $locale . '.UTF-8', $locale);
     }
 
     /**

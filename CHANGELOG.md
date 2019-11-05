@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ixocreate/intl-package/compare/0.1.2...develop)
+## [Unreleased](https://github.com/ixocreate/intl-package/compare/0.1.3...develop)
+
+## [v0.1.3 (2019-11-05)](https://github.com/ixocreate/intl-package/compare/0.1.2...0.1.3)
+### Fixed
+- prefer utf8 locales
 
 ## [v0.1.2 (2019-10-18)](https://github.com/ixocreate/intl-package/compare/0.1.1...0.1.2)
 ### Fixed
