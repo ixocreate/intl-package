@@ -25,18 +25,11 @@ class PackageTest extends TestCase
      */
     public function testPackage()
     {
-        $configuratorRegistry = $this->getMockBuilder(ConfiguratorRegistryInterface::class)->getMock();
-        $serviceRegistry = $this->getMockBuilder(ServiceRegistryInterface::class)->getMock();
-
         $package = new Package();
-        $package->configure($configuratorRegistry);
-        $package->addServices($serviceRegistry);
 
         $this->assertSame([LocaleBootstrapItem::class], $package->getBootstrapItems());
-        $this->assertNull($package->getConfigProvider());
         $this->assertNull($package->getBootstrapDirectory());
-        $this->assertNull($package->getConfigDirectory());
-        $this->assertNull($package->getDependencies());
+        $this->assertEmpty($package->getDependencies());
     }
 
     /**

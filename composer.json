@@ -3,7 +3,6 @@
     "description": "IXOCREATE Intl Package",
     "license": "MIT",
     "type": "library",
-
     "authors": [
         {
             "name": "IXOCREATE",
@@ -13,13 +12,13 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2 || ^8.0",
         "ext-intl": "*",
-        "ixocreate/application": "~0.1.0|~0.2.0"
+        "ixocreate/application": "dev-dev-develop"
     },
     "require-dev": {
         "ixocreate/coding-standard": "^2.0",
-        "ixocreate/test": "dev-develop"
+        "ixocreate/test": "^0.1"
     },
     "autoload": {
         "psr-4": {
