@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 
 class LocaleBootstrapItemTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->local = new LocaleBootstrapItem();
     }

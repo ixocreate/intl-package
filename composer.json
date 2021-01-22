@@ -11,10 +11,12 @@
             "role": "Developer"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^7.2 || ^8.0",
         "ext-intl": "*",
-        "ixocreate/application": "dev-dev-develop"
+        "ixocreate/application": "dev-develop"
     },
     "require-dev": {
         "ixocreate/coding-standard": "^2.0",
