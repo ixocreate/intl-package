@@ -9,8 +9,6 @@ declare(strict_types=1);
 
 namespace Ixocreate\Test\Intl;
 
-use Ixocreate\Application\Configurator\ConfiguratorRegistryInterface;
-use Ixocreate\Application\Service\ServiceRegistryInterface;
 use Ixocreate\Intl\LocaleBootstrapItem;
 use Ixocreate\Intl\LocaleConfigurator;
 use Ixocreate\Intl\LocaleManager;
